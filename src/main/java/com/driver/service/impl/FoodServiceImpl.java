@@ -17,12 +17,14 @@ public class FoodServiceImpl implements FoodService {
 
     @Override
     public FoodDto createFood(FoodDto food) {
+
         FoodEntity foodEntity = new FoodEntity();
 
         foodEntity.setFoodId(food.getFoodId());
         foodEntity.setFoodName(food.getFoodName());
         foodEntity.setFoodCategory(food.getFoodCategory());
         foodEntity.setFoodPrice(food.getFoodPrice());
+        foodEntity.setId(food.getId());
 
         FoodEntity savedFoodEntity = foodRepository.save(foodEntity);
 
@@ -73,6 +75,8 @@ public class FoodServiceImpl implements FoodService {
             foodDto.setFoodCategory(foodEntity.getFoodCategory());
             foodDto.setFoodName(foodEntity.getFoodName());
             foodDto.setFoodPrice(foodEntity.getFoodPrice());
+            foodDto.setId(foodEntity.getId());
+            foodDto.setFoodId(foodEntity.getFoodId());
 
             FoodEntity updatedFood = foodRepository.save(foodEntity);
 

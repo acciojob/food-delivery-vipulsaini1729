@@ -58,6 +58,7 @@ public class OrderController {
 			OrderDto savedDto = orderServiceImpl.createOrder(orderDto);
 
 			OrderDetailsResponse orderDetailsResponse = new OrderDetailsResponse();
+
 			orderDetailsResponse.setUserId(savedDto.getUserId());
 			orderDetailsResponse.setOrderId(savedDto.getOrderId());
 			orderDetailsResponse.setStatus(savedDto.isStatus());

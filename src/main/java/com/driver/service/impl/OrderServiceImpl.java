@@ -27,6 +27,7 @@ public class OrderServiceImpl implements OrderService {
         orderEntity.setItems(orderDto.getItems());
         orderEntity.setStatus(true);
         orderEntity.setUserId(orderDto.getUserId());
+        orderEntity.setId(orderDto.getId());
 
         OrderEntity savedOrder = orderRepository.save(orderEntity);
 
@@ -37,6 +38,7 @@ public class OrderServiceImpl implements OrderService {
         response.setUserId(savedOrder.getUserId());
         response.setOrderId(savedOrder.getOrderId());
         response.setStatus(savedOrder.isStatus());
+        response.setId(savedOrder.getId());
 
         return response;
     }
