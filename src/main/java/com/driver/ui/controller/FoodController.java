@@ -47,6 +47,7 @@ public class FoodController {
 	public FoodDetailsResponse createFood(@RequestBody FoodDetailsRequestModel foodDetails) {
 
 		FoodDto foodDto = new FoodDto();
+
 		foodDto.setFoodId(String.valueOf(UUID.randomUUID()));
 		foodDto.setFoodCategory(foodDetails.getFoodCategory());
 		foodDto.setFoodName(foodDetails.getFoodName());
