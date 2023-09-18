@@ -17,7 +17,6 @@ public class FoodServiceImpl implements FoodService {
 
     @Override
     public FoodDto createFood(FoodDto food) {
-
         FoodEntity foodEntity = new FoodEntity();
 
         foodEntity.setFoodId(food.getFoodId());
@@ -30,13 +29,14 @@ public class FoodServiceImpl implements FoodService {
         FoodDto response = new FoodDto();
 
         response.setId(savedFoodEntity.getId());
-        response.setFoodId(savedFoodEntity.getFoodCategory());
+        response.setFoodId(savedFoodEntity.getFoodId());
         response.setFoodName(savedFoodEntity.getFoodName());
         response.setFoodPrice(savedFoodEntity.getFoodPrice());
         response.setFoodCategory(savedFoodEntity.getFoodCategory());
 
         return response;
     }
+
 
     @Override
     public FoodDto getFoodById(String foodId) throws Exception {
@@ -65,16 +65,13 @@ public class FoodServiceImpl implements FoodService {
     public FoodDto updateFoodDetails(String foodId, FoodDto foodDetails) throws Exception {
         try{
             FoodEntity foodEntity = foodRepository.findByFoodId(foodId);
-            if(foodEntity == null){
+            if(foodEntity==null){
                 return new FoodDto();
             }
 
-            FoodDto foodDto = new FoodDto();
-
-
-            foodDto.setFoodName(foodEntity.getFoodName());
-            foodDto.setFoodPrice(foodEntity.getFoodPrice());
-            foodDto.setFoodCategory(foodEntity.getFoodCategory());
+            foodEntity.setFoodName(foodDetails.getFoodName());
+            foodEntity.setFoodPrice(foodDetails.getFoodPrice());
+            foodEntity.setFoodCategory(foodDetails.getFoodCategory());
 
             FoodEntity updatedFood = foodRepository.save(foodEntity);
 
@@ -86,12 +83,11 @@ public class FoodServiceImpl implements FoodService {
             response.setFoodPrice(updatedFood.getFoodPrice());
             response.setFoodCategory(updatedFood.getFoodCategory());
 
-            return  response;
+            return response;
+        }catch (Exception e){
+            throw  new Exception("Food not found");
+        }
 
-        }
-        catch (Exception e){
-            throw new Exception("Food Not Found");
-        }
     }
 
     @Override
