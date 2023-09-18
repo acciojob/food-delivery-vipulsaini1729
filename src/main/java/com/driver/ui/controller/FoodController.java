@@ -45,6 +45,7 @@ public class FoodController {
 
 	@PostMapping("/create")
 	public FoodDetailsResponse createFood(@RequestBody FoodDetailsRequestModel foodDetails) {
+
 		FoodDto foodDto = new FoodDto();
 
 		foodDto.setFoodId(String.valueOf(UUID.randomUUID()));

@@ -24,7 +24,6 @@ public class FoodServiceImpl implements FoodService {
         foodEntity.setFoodName(food.getFoodName());
         foodEntity.setFoodCategory(food.getFoodCategory());
         foodEntity.setFoodPrice(food.getFoodPrice());
-        foodEntity.setId(food.getId());
 
         FoodEntity savedFoodEntity = foodRepository.save(foodEntity);
 
@@ -72,11 +71,10 @@ public class FoodServiceImpl implements FoodService {
 
             FoodDto foodDto = new FoodDto();
 
-            foodDto.setFoodCategory(foodEntity.getFoodCategory());
+
             foodDto.setFoodName(foodEntity.getFoodName());
             foodDto.setFoodPrice(foodEntity.getFoodPrice());
-            foodDto.setId(foodEntity.getId());
-            foodDto.setFoodId(foodEntity.getFoodId());
+            foodDto.setFoodCategory(foodEntity.getFoodCategory());
 
             FoodEntity updatedFood = foodRepository.save(foodEntity);
 
@@ -85,8 +83,8 @@ public class FoodServiceImpl implements FoodService {
             response.setId(updatedFood.getId());
             response.setFoodId(updatedFood.getFoodId());
             response.setFoodName(updatedFood.getFoodName());
-            response.setFoodCategory(updatedFood.getFoodCategory());
             response.setFoodPrice(updatedFood.getFoodPrice());
+            response.setFoodCategory(updatedFood.getFoodCategory());
 
             return  response;
 
